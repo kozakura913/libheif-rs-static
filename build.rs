@@ -28,9 +28,12 @@ fn main() {
 		//.init_cxx_cfg(build_opts)
 		.build();
 	println!("cargo:rustc-link-search=native={}/lib", dst.display());
-	//stdc++を動的リンク
-	println!("cargo:rustc-link-lib=dylib=stdc++");
-	//println!("cargo:rustc-link-lib=static=heifall");
+	match std::env::var("LIBHEIF_LINK_CXX").as_ref().map(|s|s.as_str()){
+		Ok("static")=>println!("cargo:rustc-link-lib=static=stdc++"),
+		Ok("dynamic")=>println!("cargo:rustc-link-lib=dylib=stdc++"),
+		Ok(_)=>{},
+		Err(_)=>println!("cargo:rustc-link-lib=dylib=stdc++"),
+	}
 	println!("cargo:rustc-link-lib=static=heif");
 	//${OUT_DIR}=./target/debug/build/heif-*/out
 	let bindings = bindgen::Builder::default().header(format!("{}/include/libheif/heif.h",dst.display())).clang_arg(format!("-I{}/include/",dst.display())).parse_callbacks(Box::new(bindgen::CargoCallbacks::new())).generate().expect("Unable to generate bindings");
