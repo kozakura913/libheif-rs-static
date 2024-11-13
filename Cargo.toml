@@ -1,0 +1,12 @@
+[package]
+name = "libheif-rs-static"
+license = "MIT"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[build-dependencies]
+cmake = "0.1.51"
+bindgen = "0.70.1"
+cc = "1.1.11"
