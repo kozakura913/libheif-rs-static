@@ -36,7 +36,7 @@ fn main() {
 	}
 	println!("cargo:rustc-link-lib=static=heif");
 	//${OUT_DIR}=./target/debug/build/heif-*/out
-	let bindings = bindgen::Builder::default().header(format!("{}/include/libheif/heif.h",dst.display())).clang_arg(format!("-I{}/include/",dst.display())).parse_callbacks(Box::new(bindgen::CargoCallbacks::new())).generate().expect("Unable to generate bindings");
-	let out_path = std::path::PathBuf::from(std::env::var("OUT_DIR").unwrap());
-	bindings.write_to_file(out_path.join("libheif.rs")).expect("Couldn't write bindings!");
+	//let bindings = bindgen::Builder::default().header(format!("{}/include/libheif/heif.h",dst.display())).clang_arg(format!("-I{}/include/",dst.display())).parse_callbacks(Box::new(bindgen::CargoCallbacks::new())).generate().expect("Unable to generate bindings");
+	//let out_path = std::path::PathBuf::from(std::env::var("OUT_DIR").unwrap());
+	//bindings.write_to_file(out_path.join("libheif.rs")).expect("Couldn't write bindings!");
 }

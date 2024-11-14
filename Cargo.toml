@@ -4,9 +4,8 @@ license = "MIT"
 version = "0.1.0"
 edition = "2021"
 
-[dependencies]
-
 [build-dependencies]
 cmake = "0.1.51"
-bindgen = "0.70.1"
+#bindgen = "0.70.1"
+#bindgen = { version = "0.70.1", default-features=false, features = ["logging", "prettyplease", "static"] }
 cc = "1.1.11"
